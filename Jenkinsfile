@@ -4,24 +4,23 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Add build steps here
-                sh 'echo "Building..."'
+                build 'PES1UG21CS331-1'
+                sh 'g++ main/hello.cpp -o output'
             }
         }
         stage('Test') {
             steps {
-                // Add test steps here
-                sh 'echo "Testing..."'
+                sh './output'
+                sh 'exit 1' 
             }
         }
         stage('Deploy') {
             steps {
-                // Add deployment steps here
-                sh 'echo "Deploying..."'
+                echo 'Deploy'
             }
         }
     }
-
+   
     post {
         failure {
             echo 'Pipeline failed'
