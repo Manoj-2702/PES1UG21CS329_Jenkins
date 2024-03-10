@@ -1,28 +1,30 @@
-pipeline{
-  agent any
+pipeline {
+    agent any
 
-  stages{
-    stage('Build'){
-      steps{
-        build 'PESUG21CS329-1'
-        sh 'g++ main/hello.cpp -o output'
-      }
+    stages {
+        stage('Build') {
+            steps {
+                // Add build steps here
+                sh 'echo "Building..."'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Add test steps here
+                sh 'echo "Testing..."'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // Add deployment steps here
+                sh 'echo "Deploying..."'
+            }
+        }
     }
-    stage('Test'){
-      steps{
-        sh './output'
-        sh 'exit 1'
-      }
+
+    post {
+        failure {
+            echo 'Pipeline failed'
+        }
     }
-    stage('Deploy'){
-      steps{
-        echo 'Display'
-      }
-    }
-  }
-  post{
-    failure{
-      echo 'Pipeline Failed'
-    }
-  }
 }
